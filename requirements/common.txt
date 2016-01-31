@@ -1,0 +1,10 @@
+semver
+pyCLI
+
+uwsgi
+Flask
+redis
+pymongo
+
+
+

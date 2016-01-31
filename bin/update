@@ -1,0 +1,14 @@
+#!/bin/bash
+
+ORG=`pwd`
+CUR="${BASH_SOURCE[0]}";
+if([ -h "${CUR}" ]) then
+  while([ -h "${CUR}" ]) do CUR=`readlink "${CUR}"`; done
+fi
+pushd . > /dev/null
+cd `dirname ${CUR}` > /dev/null
+CUR=`pwd`;
+popd  > /dev/null
+
+cd $CUR/..
+flock -n /tmp/update_$1.lock python $CUR/../scripts/update_$1.py >> $CUR/../log/update_$1.log
